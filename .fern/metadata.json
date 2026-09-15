@@ -1,0 +1,17 @@
+{
+  "cliVersion": "5.89.4",
+  "generatorName": "fernapi/fern-rust-sdk",
+  "generatorVersion": "0.46.4",
+  "generatorConfig": {
+    "clientClassName": "Chronicle",
+    "crateName": "chroniclelabs",
+    "enableWireTests": true,
+    "packageDescription": "Chronicle public API SDK",
+    "packageLicense": "MIT",
+    "packageRepository": "https://github.com/chronicle-labs-ai/chronicle-rust"
+  },
+  "originGitCommit": "1f01905b6f8278288a426f476325440816953046",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "manual",
+  "sdkVersion": "0.0.11"
+}
