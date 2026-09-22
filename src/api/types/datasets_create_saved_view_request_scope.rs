@@ -1,0 +1,42 @@
+pub use crate::prelude::*;
+
+#[non_exhaustive]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub enum CreateSavedViewRequestScope {
+    Personal,
+    Workspace,
+    /// This variant is used for forward compatibility.
+    /// If the server sends a value not recognized by the current SDK version,
+    /// it will be captured here with the raw string value.
+    __Unknown(String),
+}
+impl Serialize for CreateSavedViewRequestScope {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        match self {
+            Self::Personal => serializer.serialize_str("personal"),
+            Self::Workspace => serializer.serialize_str("workspace"),
+            Self::__Unknown(val) => serializer.serialize_str(val),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for CreateSavedViewRequestScope {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let value = String::deserialize(deserializer)?;
+        match value.as_str() {
+            "personal" => Ok(Self::Personal),
+            "workspace" => Ok(Self::Workspace),
+            _ => Ok(Self::__Unknown(value)),
+        }
+    }
+}
+
+impl fmt::Display for CreateSavedViewRequestScope {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Personal => write!(f, "personal"),
+            Self::Workspace => write!(f, "workspace"),
+            Self::__Unknown(val) => write!(f, "{}", val),
+        }
+    }
+}

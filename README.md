@@ -27,7 +27,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-chroniclelabs = "0.0.11"
+chroniclelabs = "0.0.12"
 ```
 
 Or install via cargo:

@@ -12,6 +12,7 @@ pub mod resources;
 pub mod types;
 
 pub use resources::{
-    Chronicle, DiscoverClient, EventsClient, LinksClient, SdkClient, SearchClient, TimelineClient,
+    AgentsClient, BacktestsClient, Chronicle, CredentialsClient, DatasetsClient, DiscoverClient,
+    EnvironmentsClient, EventsClient, LinksClient, SdkClient, SearchClient, TimelineClient,
 };
 pub use types::*;

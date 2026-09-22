@@ -8,10 +8,20 @@
 //! - **discover**
 //! - **links**
 //! - **sdk**
+//! - **agents**
+//! - **datasets**
+//! - **environments**
+//! - **backtests**
+//! - **credentials**
 
 use crate::{ApiError, ClientConfig};
 
+pub mod agents;
+pub mod backtests;
+pub mod credentials;
+pub mod datasets;
 pub mod discover;
+pub mod environments;
 pub mod events;
 pub mod links;
 pub mod sdk;
@@ -25,6 +35,11 @@ pub struct Chronicle {
     pub discover: DiscoverClient,
     pub links: LinksClient,
     pub sdk: SdkClient,
+    pub agents: AgentsClient,
+    pub datasets: DatasetsClient,
+    pub environments: EnvironmentsClient,
+    pub backtests: BacktestsClient,
+    pub credentials: CredentialsClient,
 }
 
 impl Chronicle {
@@ -37,11 +52,21 @@ impl Chronicle {
             discover: DiscoverClient::new(config.clone())?,
             links: LinksClient::new(config.clone())?,
             sdk: SdkClient::new(config.clone())?,
+            agents: AgentsClient::new(config.clone())?,
+            datasets: DatasetsClient::new(config.clone())?,
+            environments: EnvironmentsClient::new(config.clone())?,
+            backtests: BacktestsClient::new(config.clone())?,
+            credentials: CredentialsClient::new(config.clone())?,
         })
     }
 }
 
+pub use agents::AgentsClient;
+pub use backtests::BacktestsClient;
+pub use credentials::CredentialsClient;
+pub use datasets::DatasetsClient;
 pub use discover::DiscoverClient;
+pub use environments::EnvironmentsClient;
 pub use events::EventsClient;
 pub use links::LinksClient;
 pub use sdk::SdkClient;

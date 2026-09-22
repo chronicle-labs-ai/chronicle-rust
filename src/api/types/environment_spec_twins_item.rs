@@ -1,0 +1,58 @@
+pub use crate::prelude::*;
+
+/// One declared twin: which model to run and which captured hosts feed its seed (empty means the model's default, e.g. `slack.com`).
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
+pub struct EnvironmentSpecTwinsItem {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub authorities: Option<Vec<String>>,
+    /// Image override; defaults to the platform's per-service template.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image: Option<String>,
+    /// Twin model name, e.g. `slack`.
+    #[serde(default)]
+    pub service: String,
+}
+
+impl EnvironmentSpecTwinsItem {
+    pub fn builder() -> EnvironmentSpecTwinsItemBuilder {
+        <EnvironmentSpecTwinsItemBuilder as Default>::default()
+    }
+}
+
+#[derive(Clone, PartialEq, Default, Debug)]
+#[non_exhaustive]
+pub struct EnvironmentSpecTwinsItemBuilder {
+    authorities: Option<Vec<String>>,
+    image: Option<String>,
+    service: Option<String>,
+}
+
+impl EnvironmentSpecTwinsItemBuilder {
+    pub fn authorities(mut self, value: Vec<String>) -> Self {
+        self.authorities = Some(value);
+        self
+    }
+
+    pub fn image(mut self, value: impl Into<String>) -> Self {
+        self.image = Some(value.into());
+        self
+    }
+
+    pub fn service(mut self, value: impl Into<String>) -> Self {
+        self.service = Some(value.into());
+        self
+    }
+
+    /// Consumes the builder and constructs a [`EnvironmentSpecTwinsItem`].
+    /// This method will fail if any of the following fields are not set:
+    /// - [`service`](EnvironmentSpecTwinsItemBuilder::service)
+    pub fn build(self) -> Result<EnvironmentSpecTwinsItem, BuildError> {
+        Ok(EnvironmentSpecTwinsItem {
+            authorities: self.authorities,
+            image: self.image,
+            service: self
+                .service
+                .ok_or_else(|| BuildError::missing_field("service"))?,
+        })
+    }
+}
