@@ -53,9 +53,9 @@ impl EnvironmentsClient {
     ///         .environments
     ///         .create_environment(
     ///             &CreateEnvironmentRequest {
-    ///                 slug: "slug".to_string(),
-    ///                 label: "label".to_string(),
-    ///                 description: None,
+    ///                 slug: "support-sandbox".to_string(),
+    ///                 label: "Support sandbox".to_string(),
+    ///                 description: Some("Isolated environment for support-agent backtests.".to_string()),
     ///             },
     ///             None,
     ///         )

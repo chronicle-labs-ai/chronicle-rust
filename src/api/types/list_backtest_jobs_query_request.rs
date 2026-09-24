@@ -9,6 +9,10 @@ pub struct ListBacktestJobsQueryRequest {
     pub status: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub limit: Option<i64>,
+    /// Opaque position returned as `next_cursor` by the preceding page.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cursor: Option<String>,
+    /// Deprecated compatibility input. Pass the opaque `cursor` instead.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub offset: Option<i64>,
 }
@@ -25,6 +29,7 @@ pub struct ListBacktestJobsQueryRequestBuilder {
     mode: Option<String>,
     status: Option<String>,
     limit: Option<i64>,
+    cursor: Option<String>,
     offset: Option<i64>,
 }
 
@@ -44,6 +49,11 @@ impl ListBacktestJobsQueryRequestBuilder {
         self
     }
 
+    pub fn cursor(mut self, value: impl Into<String>) -> Self {
+        self.cursor = Some(value.into());
+        self
+    }
+
     pub fn offset(mut self, value: i64) -> Self {
         self.offset = Some(value);
         self
@@ -55,6 +65,7 @@ impl ListBacktestJobsQueryRequestBuilder {
             mode: self.mode,
             status: self.status,
             limit: self.limit,
+            cursor: self.cursor,
             offset: self.offset,
         })
     }

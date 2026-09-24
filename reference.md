@@ -60,40 +60,40 @@ async fn main() {
 <dl>
 <dd>
 
-**source:** `Option<String>` 
-    
+**source:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**topic:** `Option<String>` 
-    
+**topic:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**event_type:** `Option<String>` 
-    
+**event_type:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_type:** `Option<String>` 
-    
+**entity_type:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_id:** `Option<String>` 
-    
+**entity_id:** `Option<String>`
+
 </dd>
 </dl>
 
@@ -101,7 +101,7 @@ async fn main() {
 <dd>
 
 **limit:** `Option<i64>` — Page size. Values above 200 are clamped to 200.
-    
+
 </dd>
 </dl>
 
@@ -109,7 +109,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 
@@ -117,7 +117,7 @@ async fn main() {
 <dd>
 
 **since:** `Option<String>` — Relative time window, for example last_7d.
-    
+
 </dd>
 </dl>
 </dd>
@@ -168,9 +168,14 @@ async fn main() {
         .events
         .ingest_event(
             &IngestRequest {
-                source: "my-agent".to_string(),
+                source: "support-agent".to_string(),
                 topic: "conversations".to_string(),
                 event_type: "message.sent".to_string(),
+                entities: Some(HashMap::from([("user".to_string(), "usr_123".to_string())])),
+                payload: Some(
+                    serde_json::json!({"role":"assistant","content":"Your refund is approved."}),
+                ),
+                timestamp: Some(DateTime::parse_from_rfc3339("2026-09-24T14:30:00Z").unwrap()),
                 ..Default::default()
             },
             None,
@@ -318,32 +323,32 @@ async fn main() {
 <dl>
 <dd>
 
-**source:** `Option<String>` 
-    
+**source:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**event_type:** `Option<String>` 
-    
+**event_type:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_type:** `Option<String>` 
-    
+**entity_type:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_id:** `Option<String>` 
-    
+**entity_id:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -421,16 +426,16 @@ async fn main() {
 <dl>
 <dd>
 
-**entity_type:** `String` 
-    
+**entity_type:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_id:** `String` 
-    
+**entity_id:** `String`
+
 </dd>
 </dl>
 
@@ -438,7 +443,7 @@ async fn main() {
 <dd>
 
 **limit:** `Option<i64>` — Page size. Values above the maximum are reduced to it, not rejected.
-    
+
 </dd>
 </dl>
 
@@ -446,7 +451,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque cursor from a previous response's next_cursor
-    
+
 </dd>
 </dl>
 
@@ -454,15 +459,15 @@ async fn main() {
 <dd>
 
 **since:** `Option<String>` — Relative time window, for example last_7d.
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**include_linked:** `Option<bool>` 
-    
+**include_linked:** `Option<bool>`
+
 </dd>
 </dl>
 </dd>
@@ -539,40 +544,40 @@ async fn main() {
 <dl>
 <dd>
 
-**query:** `String` 
-    
+**query:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**source:** `Option<Option<String>>` 
-    
+**source:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_type:** `Option<Option<String>>` 
-    
+**entity_type:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_id:** `Option<Option<String>>` 
-    
+**entity_id:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -580,7 +585,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<Option<String>>` — Opaque position returned by the preceding search page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -751,8 +756,8 @@ async fn main() {
 <dl>
 <dd>
 
-**entity_type:** `String` 
-    
+**entity_type:** `String`
+
 </dd>
 </dl>
 
@@ -760,7 +765,7 @@ async fn main() {
 <dd>
 
 **limit:** `Option<i64>` — Page size. Values above 200 are clamped to 200.
-    
+
 </dd>
 </dl>
 
@@ -768,7 +773,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -834,16 +839,16 @@ async fn main() {
 <dl>
 <dd>
 
-**source:** `String` 
-    
+**source:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**event_type:** `String` 
-    
+**event_type:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -918,32 +923,32 @@ async fn main() {
 <dl>
 <dd>
 
-**event_id:** `String` 
-    
+**event_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_type:** `String` 
-    
+**entity_type:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entity_id:** `String` 
-    
+**entity_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**created_by:** `Option<String>` 
-    
+**created_by:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -1019,48 +1024,48 @@ async fn main() {
 <dl>
 <dd>
 
-**source_event_id:** `String` 
-    
+**source_event_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**target_event_id:** `String` 
-    
+**target_event_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**link_type:** `String` 
-    
+**link_type:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**confidence:** `f64` 
-    
+**confidence:** `f64`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**reasoning:** `Option<Option<String>>` 
-    
+**reasoning:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**created_by:** `Option<String>` 
-    
+**created_by:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -1135,40 +1140,40 @@ async fn main() {
 <dl>
 <dd>
 
-**from_entity_type:** `String` 
-    
+**from_entity_type:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**from_entity_id:** `String` 
-    
+**from_entity_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**to_entity_type:** `String` 
-    
+**to_entity_type:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**to_entity_id:** `String` 
-    
+**to_entity_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**created_by:** `Option<String>` 
-    
+**created_by:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -1243,40 +1248,40 @@ async fn main() {
 <dl>
 <dd>
 
-**start_event_id:** `String` 
-    
+**start_event_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**direction:** `GraphRequestDirection` 
-    
+**direction:** `GraphRequestDirection`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**link_types:** `Option<Option<Vec<String>>>` 
-    
+**link_types:** `Option<Option<Vec<String>>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**max_depth:** `Option<i64>` 
-    
+**max_depth:** `Option<i64>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**min_confidence:** `Option<f64>` 
-    
+**min_confidence:** `Option<f64>`
+
 </dd>
 </dl>
 </dd>
@@ -1349,16 +1354,16 @@ async fn main() {
 <dl>
 <dd>
 
-**user_id:** `String` 
-    
+**user_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**traits:** `Option<std::collections::HashMap<String, serde_json::Value>>` 
-    
+**traits:** `Option<std::collections::HashMap<String, serde_json::Value>>`
+
 </dd>
 </dl>
 </dd>
@@ -1429,8 +1434,8 @@ async fn main() {
 <dl>
 <dd>
 
-**signals:** `Option<Vec<SignalRequest>>` 
-    
+**signals:** `Option<Vec<SignalRequest>>`
+
 </dd>
 </dl>
 </dd>
@@ -1501,8 +1506,8 @@ async fn main() {
 <dl>
 <dd>
 
-**traces:** `Option<Vec<TraceRequest>>` 
-    
+**traces:** `Option<Vec<TraceRequest>>`
+
 </dd>
 </dl>
 </dd>
@@ -1595,8 +1600,8 @@ async fn main() {
 <dl>
 <dd>
 
-**q:** `Option<String>` 
-    
+**q:** `Option<String>`
+
 </dd>
 </dl>
 
@@ -1604,7 +1609,7 @@ async fn main() {
 <dd>
 
 **domains:** `Option<String>` — Comma-separated hash domains.
-    
+
 </dd>
 </dl>
 </dd>
@@ -1697,40 +1702,40 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**environment:** `Option<Option<String>>` 
-    
+**environment:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**owner:** `Option<Option<String>>` 
-    
+**owner:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**purpose:** `Option<Option<String>>` 
-    
+**purpose:** `Option<Option<String>>`
+
 </dd>
 </dl>
 </dd>
@@ -1782,8 +1787,8 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -1835,8 +1840,8 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -1888,8 +1893,8 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -1941,16 +1946,16 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**session_id:** `String` 
-    
+**session_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -2009,24 +2014,24 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**session_id:** `String` 
-    
+**session_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**text:** `String` 
-    
+**text:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -2129,8 +2134,8 @@ async fn main() {
 <dl>
 <dd>
 
-**artifact:** `RegisterAgentArtifactRequestArtifact` 
-    
+**artifact:** `RegisterAgentArtifactRequestArtifact`
+
 </dd>
 </dl>
 
@@ -2138,7 +2143,7 @@ async fn main() {
 <dd>
 
 **metadata:** `Option<Option<RegisterAgentArtifactRequestMetadata>>` — Mutable, human-authored metadata attached to a logical Agent identity. Artifact configuration remains immutable inside `AgentRegistryVersionRecord`.
-    
+
 </dd>
 </dl>
 
@@ -2146,7 +2151,7 @@ async fn main() {
 <dd>
 
 **status:** `Option<Option<RegisterAgentArtifactRequestStatus>>` — Defaults to `current`. Registering a new current version atomically demotes the previous current version to stable.
-    
+
 </dd>
 </dl>
 </dd>
@@ -2246,8 +2251,8 @@ async fn main() {
 <dl>
 <dd>
 
-**runs:** `Vec<RecordAgentRunsRequestRunsItem>` 
-    
+**runs:** `Vec<RecordAgentRunsRequestRunsItem>`
+
 </dd>
 </dl>
 </dd>
@@ -2305,24 +2310,24 @@ async fn main() {
 <dl>
 <dd>
 
-**include_archived:** `Option<bool>` 
-    
+**include_archived:** `Option<bool>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**query:** `Option<String>` 
-    
+**query:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -2330,7 +2335,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -2390,16 +2395,16 @@ async fn main() {
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
@@ -2407,15 +2412,15 @@ async fn main() {
 <dd>
 
 **purpose:** `Option<Option<CreateTaskSuitePayloadPurpose>>` — Intended use of a dataset — drives the colored badge on the picker and lets apps route additions to the right backend (eval suite, training set, replay corpus, manual review queue).
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**tags:** `Option<Option<Vec<String>>>` 
-    
+**tags:** `Option<Option<Vec<String>>>`
+
 </dd>
 </dl>
 </dd>
@@ -2479,16 +2484,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset:** `CreateTaskSuiteWithTraceRequestDataset` 
-    
+**dataset:** `CreateTaskSuiteWithTraceRequestDataset`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**trace:** `CreateTaskSuiteWithTraceRequestTrace` 
-    
+**trace:** `CreateTaskSuiteWithTraceRequestTrace`
+
 </dd>
 </dl>
 </dd>
@@ -2540,8 +2545,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -2599,16 +2604,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**cascade:** `Option<bool>` 
-    
+**cascade:** `Option<bool>`
+
 </dd>
 </dl>
 </dd>
@@ -2666,24 +2671,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**name:** `Option<Option<String>>` 
-    
+**name:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
@@ -2691,15 +2696,15 @@ async fn main() {
 <dd>
 
 **purpose:** `Option<Option<TaskSuitePatchPurpose>>` — Intended use of a dataset — drives the colored badge on the picker and lets apps route additions to the right backend (eval suite, training set, replay corpus, manual review queue).
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**tags:** `Option<Option<Vec<String>>>` 
-    
+**tags:** `Option<Option<Vec<String>>>`
+
 </dd>
 </dl>
 </dd>
@@ -2751,8 +2756,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -2810,16 +2815,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -2827,7 +2832,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -2892,8 +2897,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
@@ -2901,23 +2906,23 @@ async fn main() {
 <dd>
 
 **event_ids:** `Option<Vec<String>>` — Accepted for compatibility but never trusted as the authoritative capture. The service re-reads the canonical store by subject.
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**add_task_from_trace_request_idempotency_key:** `Option<Option<String>>` 
-    
+**add_task_from_trace_request_idempotency_key:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**notes:** `Option<Option<String>>` 
-    
+**notes:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
@@ -2925,7 +2930,7 @@ async fn main() {
 <dd>
 
 **split:** `Option<Option<AddTaskFromTraceRequestSplit>>` — Train / validation / test split assignment.
-    
+
 </dd>
 </dl>
 
@@ -2933,31 +2938,31 @@ async fn main() {
 <dd>
 
 **task:** `Option<Option<AddTaskFromTraceRequestTask>>` — Optional task fields. Anything left unset is derived from the captured trace (title from the label, instruction from the first message, expected outcome from the events after the cutoff).
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**trace_id:** `String` 
-    
+**trace_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**trace_synthesized:** `Option<bool>` 
-    
+**trace_synthesized:** `Option<bool>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**verifiers:** `Option<Vec<AddTaskFromTraceRequestVerifiersItem>>` 
-    
+**verifiers:** `Option<Vec<AddTaskFromTraceRequestVerifiersItem>>`
+
 </dd>
 </dl>
 </dd>
@@ -3018,8 +3023,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
@@ -3027,15 +3032,15 @@ async fn main() {
 <dd>
 
 **patch:** `UpdateTracesRequestPatch` — Patch to apply to one or more memberships. Nullable annotations preserve the same three states as [`PatchField`]: explicit JSON `null` clears while omission is a no-op.
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**trace_ids:** `Vec<String>` 
-    
+**trace_ids:** `Vec<String>`
+
 </dd>
 </dl>
 </dd>
@@ -3094,24 +3099,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**reason:** `Option<String>` 
-    
+**reason:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -3170,16 +3175,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3238,24 +3243,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -3263,7 +3268,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -3315,8 +3320,8 @@ async fn main() {
 <dl>
 <dd>
 
-**trace_id:** `String` 
-    
+**trace_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3374,16 +3379,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -3391,7 +3396,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -3447,8 +3452,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3504,16 +3509,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3572,24 +3577,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**reason:** `Option<String>` 
-    
+**reason:** `Option<String>`
+
 </dd>
 </dl>
 </dd>
@@ -3646,16 +3651,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3717,24 +3722,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**verifiers:** `Vec<SetTaskVerifiersRequestVerifiersItem>` 
-    
+**verifiers:** `Vec<SetTaskVerifiersRequestVerifiersItem>`
+
 </dd>
 </dl>
 </dd>
@@ -3793,24 +3798,24 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
@@ -3818,7 +3823,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -3877,16 +3882,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**membership_id:** `String` 
-    
+**membership_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -3938,8 +3943,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4001,48 +4006,48 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**color:** `String` 
-    
+**color:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**create_cluster_request_idempotency_key:** `Option<Option<String>>` 
-    
+**create_cluster_request_idempotency_key:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**label:** `String` 
-    
+**label:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**similarity_center:** `Option<Option<Vec<f64>>>` 
-    
+**similarity_center:** `Option<Option<Vec<f64>>>`
+
 </dd>
 </dl>
 </dd>
@@ -4094,16 +4099,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**cluster_id:** `String` 
-    
+**cluster_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4162,48 +4167,48 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**cluster_id:** `String` 
-    
+**cluster_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**color:** `Option<Option<String>>` 
-    
+**color:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**label:** `Option<Option<String>>` 
-    
+**label:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**similarity_center:** `Option<Option<Vec<f64>>>` 
-    
+**similarity_center:** `Option<Option<Vec<f64>>>`
+
 </dd>
 </dl>
 </dd>
@@ -4255,8 +4260,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4322,64 +4327,64 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**create_saved_view_request_idempotency_key:** `Option<Option<String>>` 
-    
+**create_saved_view_request_idempotency_key:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**schema_version:** `Option<Option<String>>` 
-    
+**schema_version:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**scope:** `CreateSavedViewRequestScope` 
-    
+**scope:** `CreateSavedViewRequestScope`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**shortcut:** `Option<Option<String>>` 
-    
+**shortcut:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**state:** `CreateSavedViewRequestState` 
-    
+**state:** `CreateSavedViewRequestState`
+
 </dd>
 </dl>
 </dd>
@@ -4431,16 +4436,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**view_id:** `String` 
-    
+**view_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4499,72 +4504,72 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**view_id:** `String` 
-    
+**view_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**created_by:** `Option<Option<String>>` 
-    
+**created_by:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**name:** `Option<Option<String>>` 
-    
+**name:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**scope:** `Option<Option<DatasetSavedViewPatchScope>>` 
-    
+**scope:** `Option<Option<DatasetSavedViewPatchScope>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**shortcut:** `Option<Option<String>>` 
-    
+**shortcut:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**state:** `Option<Option<DatasetSavedViewPatchState>>` 
-    
+**state:** `Option<Option<DatasetSavedViewPatchState>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**updated_at:** `Option<Option<String>>` 
-    
+**updated_at:** `Option<Option<String>>`
+
 </dd>
 </dl>
 </dd>
@@ -4616,8 +4621,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4675,32 +4680,32 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**publish_version_request_idempotency_key:** `Option<Option<String>>` 
-    
+**publish_version_request_idempotency_key:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**label:** `Option<Option<String>>` 
-    
+**label:** `Option<Option<String>>`
+
 </dd>
 </dl>
 </dd>
@@ -4752,16 +4757,16 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**version_id:** `String` 
-    
+**version_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4813,8 +4818,8 @@ async fn main() {
 <dl>
 <dd>
 
-**dataset_id:** `String` 
-    
+**dataset_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -4887,9 +4892,9 @@ async fn main() {
         .environments
         .create_environment(
             &CreateEnvironmentRequest {
-                slug: "slug".to_string(),
-                label: "label".to_string(),
-                description: None,
+                slug: "support-sandbox".to_string(),
+                label: "Support sandbox".to_string(),
+                description: Some("Isolated environment for support-agent backtests.".to_string()),
             },
             None,
         )
@@ -4909,24 +4914,24 @@ async fn main() {
 <dl>
 <dd>
 
-**slug:** `String` 
-    
+**slug:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**label:** `String` 
-    
+**label:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**description:** `Option<Option<String>>` 
-    
+**description:** `Option<Option<String>>`
+
 </dd>
 </dl>
 </dd>
@@ -4979,7 +4984,7 @@ async fn main() {
 <dd>
 
 **environment_id:** `String` — Environment ID or slug.
-    
+
 </dd>
 </dl>
 </dd>
@@ -5032,7 +5037,7 @@ async fn main() {
 <dd>
 
 **environment_id:** `String` — Environment ID or slug.
-    
+
 </dd>
 </dl>
 </dd>
@@ -5093,31 +5098,31 @@ async fn main() {
 <dd>
 
 **environment_id:** `String` — Environment ID or slug.
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**version:** `String` 
-    
+**version:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**spec:** `Option<EnvironmentSpec>` 
-    
+**spec:** `Option<EnvironmentSpec>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**status:** `Option<EnvironmentVersionStatus>` 
-    
+**status:** `Option<EnvironmentVersionStatus>`
+
 </dd>
 </dl>
 </dd>
@@ -5174,7 +5179,7 @@ async fn main() {
 <dd>
 
 **environment_id:** `String` — Environment ID or slug.
-    
+
 </dd>
 </dl>
 
@@ -5182,7 +5187,7 @@ async fn main() {
 <dd>
 
 **version_selector:** `String` — Environment-version ID or version label.
-    
+
 </dd>
 </dl>
 </dd>
@@ -5243,7 +5248,7 @@ async fn main() {
 <dd>
 
 **environment_id:** `String` — Environment ID or slug.
-    
+
 </dd>
 </dl>
 
@@ -5251,23 +5256,23 @@ async fn main() {
 <dd>
 
 **version_selector:** `String` — Environment-version ID or version label.
-    
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**dataset_snapshot_id:** `String` 
-    
+**dataset_snapshot_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**scenario_id:** `String` 
-    
+**scenario_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -5314,7 +5319,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_jobs</a>(mode: Option&lt;Option&lt;String&gt;&gt;, status: Option&lt;Option&lt;String&gt;&gt;, limit: Option&lt;Option&lt;i64&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobsResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_jobs</a>(mode: Option&lt;Option&lt;String&gt;&gt;, status: Option&lt;Option&lt;String&gt;&gt;, limit: Option&lt;Option&lt;i64&gt;&gt;, cursor: Option&lt;Option&lt;String&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobsResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5360,32 +5365,40 @@ async fn main() {
 <dl>
 <dd>
 
-**mode:** `Option<String>` 
-    
+**mode:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**status:** `Option<String>` 
-    
+**status:** `Option<String>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**offset:** `Option<i64>` 
-    
+**cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `Option<i64>` — Deprecated compatibility input. Pass the opaque `cursor` instead.
+
 </dd>
 </dl>
 </dd>
@@ -5508,40 +5521,40 @@ async fn main() {
 <dl>
 <dd>
 
-**cases:** `Option<Option<Vec<CreateBacktestJobRequestCasesItem>>>` 
-    
+**cases:** `Option<Option<Vec<CreateBacktestJobRequestCasesItem>>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**evaluator_profile_id:** `Option<Option<String>>` 
-    
+**evaluator_profile_id:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**n_concurrent:** `Option<Option<String>>` 
-    
+**n_concurrent:** `Option<Option<String>>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**recipe:** `CreateBacktestJobRequestRecipe` 
-    
+**recipe:** `CreateBacktestJobRequestRecipe`
+
 </dd>
 </dl>
 </dd>
@@ -5593,8 +5606,8 @@ async fn main() {
 <dl>
 <dd>
 
-**job_id:** `String` 
-    
+**job_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -5605,7 +5618,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_job_trials</a>(job_id: String, limit: Option&lt;Option&lt;i64&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobTrialsResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_job_trials</a>(job_id: String, limit: Option&lt;Option&lt;i64&gt;&gt;, cursor: Option&lt;Option&lt;String&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobTrialsResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5652,24 +5665,32 @@ async fn main() {
 <dl>
 <dd>
 
-**job_id:** `String` 
-    
+**job_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**limit:** `Option<i64>` 
-    
+**limit:** `Option<i64>`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**offset:** `Option<i64>` 
-    
+**cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `Option<i64>` — Deprecated compatibility input. Pass the opaque `cursor` instead.
+
 </dd>
 </dl>
 </dd>
@@ -5721,16 +5742,16 @@ async fn main() {
 <dl>
 <dd>
 
-**job_id:** `String` 
-    
+**job_id:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**trial_id:** `String` 
-    
+**trial_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -5782,8 +5803,8 @@ async fn main() {
 <dl>
 <dd>
 
-**job_id:** `String` 
-    
+**job_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -5835,8 +5856,8 @@ async fn main() {
 <dl>
 <dd>
 
-**job_id:** `String` 
-    
+**job_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -5944,16 +5965,16 @@ async fn main() {
 <dl>
 <dd>
 
-**name:** `String` 
-    
+**name:** `String`
+
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**scopes:** `Vec<CreateSdkKeyRequestScopesItem>` 
-    
+**scopes:** `Vec<CreateSdkKeyRequestScopesItem>`
+
 </dd>
 </dl>
 </dd>
@@ -6005,8 +6026,8 @@ async fn main() {
 <dl>
 <dd>
 
-**key_id:** `String` 
-    
+**key_id:** `String`
+
 </dd>
 </dl>
 </dd>
@@ -6016,4 +6037,3 @@ async fn main() {
 </dd>
 </dl>
 </details>
-

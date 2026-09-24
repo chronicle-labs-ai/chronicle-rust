@@ -80,6 +80,7 @@ impl BacktestsClient {
                     .string("mode", request.mode.clone())
                     .string("status", request.status.clone())
                     .int("limit", request.limit.clone())
+                    .string("cursor", request.cursor.clone())
                     .int("offset", request.offset.clone())
                     .build(),
                 options,
@@ -259,6 +260,7 @@ impl BacktestsClient {
                 None,
                 QueryBuilder::new()
                     .int("limit", request.limit.clone())
+                    .string("cursor", request.cursor.clone())
                     .int("offset", request.offset.clone())
                     .build(),
                 options,
