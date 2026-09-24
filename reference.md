@@ -168,9 +168,14 @@ async fn main() {
         .events
         .ingest_event(
             &IngestRequest {
-                source: "my-agent".to_string(),
+                source: "support-agent".to_string(),
                 topic: "conversations".to_string(),
                 event_type: "message.sent".to_string(),
+                entities: Some(HashMap::from([("user".to_string(), "usr_123".to_string())])),
+                payload: Some(
+                    serde_json::json!({"role":"assistant","content":"Your refund is approved."}),
+                ),
+                timestamp: Some(DateTime::parse_from_rfc3339("2026-09-24T14:30:00Z").unwrap()),
                 ..Default::default()
             },
             None,
@@ -4887,9 +4892,9 @@ async fn main() {
         .environments
         .create_environment(
             &CreateEnvironmentRequest {
-                slug: "slug".to_string(),
-                label: "label".to_string(),
-                description: None,
+                slug: "support-sandbox".to_string(),
+                label: "Support sandbox".to_string(),
+                description: Some("Isolated environment for support-agent backtests.".to_string()),
             },
             None,
         )
@@ -5314,7 +5319,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_jobs</a>(mode: Option&lt;Option&lt;String&gt;&gt;, status: Option&lt;Option&lt;String&gt;&gt;, limit: Option&lt;Option&lt;i64&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobsResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_jobs</a>(mode: Option&lt;Option&lt;String&gt;&gt;, status: Option&lt;Option&lt;String&gt;&gt;, limit: Option&lt;Option&lt;i64&gt;&gt;, cursor: Option&lt;Option&lt;String&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobsResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5384,7 +5389,15 @@ async fn main() {
 <dl>
 <dd>
 
-**offset:** `Option<i64>` 
+**cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `Option<i64>` — Deprecated compatibility input. Pass the opaque `cursor` instead.
     
 </dd>
 </dl>
@@ -5605,7 +5618,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_job_trials</a>(job_id: String, limit: Option&lt;Option&lt;i64&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobTrialsResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.backtests.<a href="/src/api/resources/backtests/client.rs">list_backtest_job_trials</a>(job_id: String, limit: Option&lt;Option&lt;i64&gt;&gt;, cursor: Option&lt;Option&lt;String&gt;&gt;, offset: Option&lt;Option&lt;i64&gt;&gt;) -> Result&lt;ListBacktestJobTrialsResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5668,7 +5681,15 @@ async fn main() {
 <dl>
 <dd>
 
-**offset:** `Option<i64>` 
+**cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `Option<i64>` — Deprecated compatibility input. Pass the opaque `cursor` instead.
     
 </dd>
 </dl>

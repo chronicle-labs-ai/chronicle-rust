@@ -1,4 +1,3 @@
-use crate::prelude::*;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -10,7 +9,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -23,7 +22,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -36,7 +35,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -49,7 +48,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -62,7 +61,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -75,7 +74,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -88,7 +87,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -101,7 +100,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -114,7 +113,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -127,7 +126,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -140,7 +139,7 @@ pub enum ApiError {
         title: Option<String>,
         status: Option<i64>,
         detail: Option<String>,
-        code: Option<ErrorResponseCode>,
+        code: Option<String>,
         error: Option<String>,
         retryable: Option<bool>,
         request_id: Option<String>,
@@ -193,9 +192,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -246,9 +245,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -299,9 +298,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -352,9 +351,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -405,9 +404,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -458,9 +457,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -511,9 +510,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -564,9 +563,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -617,9 +616,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -670,9 +669,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
@@ -723,9 +722,9 @@ impl ApiError {
                             detail: parsed
                                 .get("detail")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),
-                            code: parsed.get("code").and_then(|v| {
-                                serde_json::from_value::<ErrorResponseCode>(v.clone()).ok()
-                            }),
+                            code: parsed
+                                .get("code")
+                                .and_then(|v| v.as_str().map(|s| s.to_string())),
                             error: parsed
                                 .get("error")
                                 .and_then(|v| v.as_str().map(|s| s.to_string())),

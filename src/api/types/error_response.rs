@@ -1,7 +1,7 @@
 pub use crate::prelude::*;
 
 /// RFC 9457 problem details, served as `application/problem+json`. The `code` member is the stable machine-readable slug to branch on; `type` and `title` are stable per problem class, and `detail` varies per occurrence. The `error` and `message` members are retained for existing clients and carry the same values as `code` and `detail`. The request identifier appears both in the `x-request-id` response header, for code to read and log, and in the `request_id` member, so it survives being copied into a support thread.
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub struct ErrorResponse {
     /// URI identifying the problem class
     #[serde(default)]
@@ -16,7 +16,8 @@ pub struct ErrorResponse {
     #[serde(default)]
     pub detail: String,
     /// Stable machine-readable slug to branch on
-    pub code: ErrorResponseCode,
+    #[serde(default)]
+    pub code: String,
     /// Retained for existing clients. Same value as `code`.
     #[serde(default)]
     pub error: String,
@@ -46,7 +47,7 @@ pub struct ErrorResponseBuilder {
     title: Option<String>,
     status: Option<i64>,
     detail: Option<String>,
-    code: Option<ErrorResponseCode>,
+    code: Option<String>,
     error: Option<String>,
     message: Option<String>,
     retryable: Option<bool>,
@@ -75,8 +76,8 @@ impl ErrorResponseBuilder {
         self
     }
 
-    pub fn code(mut self, value: ErrorResponseCode) -> Self {
-        self.code = Some(value);
+    pub fn code(mut self, value: impl Into<String>) -> Self {
+        self.code = Some(value.into());
         self
     }
 

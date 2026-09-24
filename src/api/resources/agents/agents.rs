@@ -1,7 +1,6 @@
 use crate::api::*;
 use crate::{ApiError, ClientConfig, HttpClient, QueryBuilder, RequestOptions, SseStream};
 use reqwest::Method;
-use std::collections::HashMap;
 
 pub struct AgentsClient {
     pub http_client: HttpClient,
