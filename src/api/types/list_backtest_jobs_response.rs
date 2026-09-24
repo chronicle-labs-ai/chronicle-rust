@@ -5,6 +5,9 @@ pub struct ListBacktestJobsResponse {
     #[serde(rename = "hasMore")]
     #[serde(default)]
     pub has_more: bool,
+    #[serde(rename = "nextCursor")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub next_cursor: Option<String>,
     #[serde(rename = "nextOffset")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub next_offset: Option<i64>,
@@ -22,6 +25,7 @@ impl ListBacktestJobsResponse {
 #[non_exhaustive]
 pub struct ListBacktestJobsResponseBuilder {
     has_more: Option<bool>,
+    next_cursor: Option<String>,
     next_offset: Option<i64>,
     runs: Option<Vec<ListBacktestJobsResponseRunsItem>>,
 }
@@ -29,6 +33,11 @@ pub struct ListBacktestJobsResponseBuilder {
 impl ListBacktestJobsResponseBuilder {
     pub fn has_more(mut self, value: bool) -> Self {
         self.has_more = Some(value);
+        self
+    }
+
+    pub fn next_cursor(mut self, value: impl Into<String>) -> Self {
+        self.next_cursor = Some(value.into());
         self
     }
 
@@ -51,6 +60,7 @@ impl ListBacktestJobsResponseBuilder {
             has_more: self
                 .has_more
                 .ok_or_else(|| BuildError::missing_field("has_more"))?,
+            next_cursor: self.next_cursor,
             next_offset: self.next_offset,
             runs: self.runs.ok_or_else(|| BuildError::missing_field("runs"))?,
         })

@@ -1,0 +1,16 @@
+# DO NOT EDIT MANUALLY - Managed by Fern Replay
+version: "1.0"
+generations:
+  - commit_sha: 5d57d7d7eb7eb33915350173ab0e037250822326
+    tree_hash: e610ddf813c5ed6dcc728450c4aa44186d2a81bc
+    timestamp: 2026-09-24T20:23:47.294Z
+    cli_version: unknown
+    generator_versions: {}
+  - commit_sha: 7ed7feec9ef1223982b90e7730b428745fa07b82
+    tree_hash: 990249e0144831e57bad0e7a720d2c61e5dcccde
+    timestamp: 2026-09-24T20:23:47.578Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-rust-sdk: 0.46.4
+current_generation: 7ed7feec9ef1223982b90e7730b428745fa07b82
+patches: []

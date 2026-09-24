@@ -100,9 +100,14 @@ impl EventsClient {
     ///         .events
     ///         .ingest_event(
     ///             &IngestRequest {
-    ///                 source: "my-agent".to_string(),
+    ///                 source: "support-agent".to_string(),
     ///                 topic: "conversations".to_string(),
     ///                 event_type: "message.sent".to_string(),
+    ///                 entities: Some(HashMap::from([("user".to_string(), "usr_123".to_string())])),
+    ///                 payload: Some(
+    ///                     serde_json::json!({"role":"assistant","content":"Your refund is approved."}),
+    ///                 ),
+    ///                 timestamp: Some(DateTime::parse_from_rfc3339("2026-09-24T14:30:00Z").unwrap()),
     ///                 ..Default::default()
     ///             },
     ///             None,

@@ -10,9 +10,9 @@
     "packageLicense": "MIT",
     "packageRepository": "https://github.com/chronicle-labs-ai/chronicle-rust"
   },
-  "originGitCommit": "e59147a4fc924257229324e2f45a802d064b115b",
+  "originGitCommit": "70a6a777674637878261d9e3175ca40626249123",
   "originGitCommitIsDirty": false,
   "invokedBy": "manual",
-  "requestedVersion": "0.0.12",
-  "sdkVersion": "0.0.12"
+  "requestedVersion": "0.0.13",
+  "sdkVersion": "0.0.13"
 }
