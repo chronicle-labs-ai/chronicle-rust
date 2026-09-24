@@ -109,7 +109,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 
@@ -773,7 +773,7 @@ async fn main() {
 <dd>
 
 **cursor:** `Option<String>` — Opaque position returned as `next_cursor` by the preceding page.
-    
+
 </dd>
 </dl>
 </dd>
@@ -6037,4 +6037,3 @@ async fn main() {
 </dd>
 </dl>
 </details>
-
